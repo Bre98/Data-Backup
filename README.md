@@ -57,7 +57,7 @@ The script automatically sets up a cron job based on the frequency specified. No
 
 - Ensure that cron and rsync are installed on your system.
 - Verify that the source and destination directories exist and that you have the necessary permissions to access them.
-- If backups are not occurring as scheduled, check the cron job setup by running crontab -l.
+- If backups are not occurring as scheduled, check the cron job setup by running `crontab -l`.
 
 ## Contributing
 
