@@ -26,19 +26,24 @@ def backup_data(source, destination):
 
 # Function to setup automatic backups using cron jobs
 def setup_cron_job(source, destination, frequency):
-    cron_command = f"{frequency} /usr/bin/python3 {os.path.realpath(__file__)} {source} {destination}"
+    cron_command = f"{frequency} /usr/bin/python3 {os.path.realpath(__file__)} {source} {destination}\n"
     try:
-        subprocess.run(["crontab", "-l"], check=True, stdout=subprocess.PIPE)
+        # Capture the existing crontab
+        existing_cron_jobs = subprocess.run(["crontab", "-l"], check=True, stdout=subprocess.PIPE).stdout.decode('utf-8')
     except subprocess.CalledProcessError:
-        # No crontab for user, creating a new one
-        with open("mycron", "w") as cronfile:
-            cronfile.write(cron_command + "\n")
-    else:
-        # Append new cron job to existing crontab
-        subprocess.run(["bash", "-c", f"echo '{cron_command}' >> mycron"], check=True)
-        subprocess.run(["crontab", "mycron"], check=True)
+        # No crontab for user
+        existing_cron_jobs = ""
+
+    # Write the existing + new cron command to mycron
+    with open("mycron", "w") as cronfile:
+        cronfile.write(existing_cron_jobs)
+        cronfile.write(cron_command)
+
+    # Install the new crontab
+    subprocess.run(["crontab", "mycron"], check=True)
     
     print("Cron job setup complete.")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
