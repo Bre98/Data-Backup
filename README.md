@@ -21,12 +21,12 @@ Features
 1. Clone this repository to your local machine:
 
    ```
-   git clone https://github.com/Bre98/automatic-data-backup-system.git
+   git clone https://github.com/Bre98/Data-Backup.git
    ```
 2. Navigate to the project directory:
 
    ```
-    cd automatic-data-backup-system
+    cd Data-Backup
    ```
 
 ### Usage
