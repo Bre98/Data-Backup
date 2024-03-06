@@ -21,7 +21,7 @@ Features
 1. Clone this repository to your local machine:
 
    ```
-   git clone https://github.com/yourgithubusername/automatic-data-backup-system.git
+   git clone https://github.com/Bre98/automatic-data-backup-system.git
    ```
 2. Navigate to the project directory:
 
